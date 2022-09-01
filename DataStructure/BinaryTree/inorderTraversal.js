@@ -6,8 +6,7 @@
 //    3
 // 输出: [1,3,2]
 
-const recursion = (root) => {
-  const arr = []
+const recursion = (root, arr = []) => {
   if (root) {
     recursion(root.left, arr)
     arr.push(root.val)
