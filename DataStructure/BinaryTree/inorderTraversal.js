@@ -22,7 +22,7 @@ const iteration = (root) => {
   let curr = root
   while (curr || stack.length > 0) {
     while (curr) {
-      stack.push(curr.left)
+      stack.push(curr)
       curr = curr.left
     }
     curr = stack.pop()
