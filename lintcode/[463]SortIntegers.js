@@ -20,6 +20,119 @@
 
 // Mark-非常棒的逻辑讲解: https://blog.csdn.net/weixin_46224014/article/details/121231814
 
+const arr = [5, 4, 3, 2, 1]
+Array.prototype.insertionSort = function () {
+  //从第二个数开始往前比
+  for (let i = 1; i < this.length; ++i) {
+    //先把值保存起来
+    const temp = this[i]
+    let j = i
+    while (j > 0) {
+      if (this[j - 1] > temp) {
+        this[j] = this[j - 1]
+      } else {
+        //因为已经是排序过的了，如果比上一位大，那就没必要再跟上上位比较了
+        break
+      }
+      j -= 1
+    }
+    //这里的j有可能是第0位，也有可能是到了一半停止了
+    this[j] = temp
+  }
+}
+
+arr.insertionSort()
+
+Array.prototype.bubbleSort = function () {
+  for (let i = 0; i < this.length - 1; i += 1) {
+    //通过 this.length 次把第一位放到最后,完成排序
+    //-i是因为最后的位置是会动态改变的，当完成一次后,最后一位会变成倒数第二位
+    for (let j = 0; j < this.length - 1 - i; j += 1) {
+      if (this[j] > this[j + 1]) {
+        const temp = this[j]
+        this[j] = this[j + 1]
+        this[j + 1] = temp
+      }
+    }
+  }
+}
+
+arr.bubbleSort()
+
+Array.prototype.selectionSort = function () {
+  for (let i = 0; i < this.length - 1; i++) {
+    let minIdx = i
+    for (let j = i; j < this.length; j++) {
+      if (this[j] < this[i]) {
+        minIdx = j
+      }
+    }
+
+    if (minIdx !== i) {
+      const temp = this[i]
+      this[i] = this[minIdx]
+      this[minIdx] = temp
+    }
+  }
+}
+
+arr.selectionSort()
+
+Array.prototype.mergeSort = function () {
+  const rec = (arr) => {
+    if (arr.length === (1 || 0)) {
+      return arr
+    }
+    const mid = Math.floor(arr.length / 2)
+    const left = arr.slice(0, mid)
+    const right = arr.slice(mid, arr.length)
+
+    const arrL = rec(left)
+    const arrR = rec(right)
+    const _res = []
+    while (arrL.length !== 0 || arrR.length !== 0) {
+      if (arrL.length !== 0 && arrR.length !== 0) {
+        return arrL[0] < arrR[0]
+          ? _res.push(arrL.shift())
+          : _res.push(arrR.shift())
+      } else if (arrL.length !== 0) {
+        _res.push(arrL.shift())
+      } else if (arrR.length !== 0) {
+        _res.push(arrR.shift())
+      }
+    }
+
+    return _res
+  }
+  const res = rec(this)
+  res.forEach((v, i) => (this[i] = v))
+}
+
+arr.mergeSort()
+
+Array.prototype.quickSort = function () {
+  const rec = (arr) => {
+    if (arr.length === (0 || 1)) {
+      return arr
+    }
+
+    const mid = arr[0]
+    const left = []
+    const right = []
+
+    for (let i = 1; i < this.length; ++i) {
+      if (arr[i] < mid) {
+        left.push(arr[i])
+      } else {
+        right.push(arr[i])
+      }
+    }
+    return [...rec(left), mid, ...rec(right)]
+  }
+  const res = rec(this)
+  res.forEach((v, i) => (this[i] = v))
+}
+
 export class SortIntegers {
   /**
    * @param a: an integer array
@@ -42,7 +155,6 @@ export class SortIntegers {
       }
     }
   }
-
   selectionSort(a) {
     // selectionSort 184ms 20.51MB
     // 1. 找到数组中的最小值，选中它并将其放置在第一位
@@ -64,7 +176,6 @@ export class SortIntegers {
       }
     }
   }
-
   insertionSort(a) {
     // insertionSort 392ms 42.73MB
     // 1. 从第二个数开始往前比
@@ -88,7 +199,6 @@ export class SortIntegers {
       a[j] = temp
     }
   }
-
   mergeSort(a) {
     // mergeSort 327ms 43.30MB
     // 分: 把数组劈成两半，再递归地对数组进行“分”操作，直到分成一个个单独的数
@@ -125,7 +235,6 @@ export class SortIntegers {
     const res = rec(a)
     res.forEach((val, idx) => (a[idx] = val))
   }
-
   quickSort(a) {
     // quickSort 122ms 13.19MB
     // 分区: 从数组中任意选择一个基准，所有比基准小的元素放到基准前面，比基准大的元素放到基准的后面
