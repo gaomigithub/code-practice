@@ -63,7 +63,7 @@ Array.prototype.selectionSort = function () {
   for (let i = 0; i < this.length - 1; i++) {
     let minIdx = i
     for (let j = i; j < this.length; j++) {
-      if (this[j] < this[i]) {
+      if (this[j] < this[minIdx]) {
         minIdx = j
       }
     }
@@ -92,9 +92,7 @@ Array.prototype.mergeSort = function () {
     const _res = []
     while (arrL.length !== 0 || arrR.length !== 0) {
       if (arrL.length !== 0 && arrR.length !== 0) {
-        return arrL[0] < arrR[0]
-          ? _res.push(arrL.shift())
-          : _res.push(arrR.shift())
+        _res.push(arrL[0] < arrR[0] ? arrL.shift() : arrR.shift())
       } else if (arrL.length !== 0) {
         _res.push(arrL.shift())
       } else if (arrR.length !== 0) {
@@ -132,6 +130,8 @@ Array.prototype.quickSort = function () {
   const res = rec(this)
   res.forEach((v, i) => (this[i] = v))
 }
+
+arr.quickSort()
 
 export class SortIntegers {
   /**
