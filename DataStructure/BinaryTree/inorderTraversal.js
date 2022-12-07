@@ -30,3 +30,20 @@ const iteration = (root) => {
   }
   return res
 }
+
+const _iteration = (root) => {
+  const res = []
+  const stack = []
+
+  while (stack.length > 0 || root) {
+    while (root) {
+      stack.push(root)
+      root = root.left
+    }
+    let temp = stack.pop()
+    res.push(temp.val)
+    root = temp.right
+  }
+
+  return res
+}
