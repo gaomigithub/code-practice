@@ -1,9 +1,11 @@
 export class Unique {
-  // 利用ES6: filter
-  byFilter(arr) {
+  // 利用Map哈希表特性
+  byMap(arr) {
     const res = new Map()
     return arr.filter((item) => !res.has(item) && res.set(item, 1))
   }
+
+  // 利用ES6: filter
   byFilter2(arr) {
     return arr.filter(function (item, index) {
       return arr.indexOf(item) === index // indexOf只能查找到第一个
