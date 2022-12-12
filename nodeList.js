@@ -1,10 +1,12 @@
-export class Node {
+// 数组的缺点：从数组的起点或中间插入数据，成本是很高的，因为需要移动元素
+// 链表储存有序的元素集合。每个元素由一个储存元素本身的节点和下一个指向下一个元素的引用（也称为指针或链接）。
+class Node {
   constructor(element) {
     this.element = element
     this.next = undefined
   }
 }
-export class LinkedList {
+class LinkedList {
   constructor() {
     this.count = 0
     this.head = undefined
