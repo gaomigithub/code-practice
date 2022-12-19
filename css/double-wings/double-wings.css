@@ -1,0 +1,41 @@
+#content {
+  border: 1px solid #999;
+}
+#content:after {
+  /*清除浮动*/
+  content: '';
+  display: block;
+  clear: both;
+}
+.main,
+.aside,
+.extra {
+  /*元素全部浮动*/
+  float: left;
+}
+
+.main {
+  width: 100%; /*宽度自适应*/
+}
+.wrap {
+  /*子级wrap负责设置外边距*/
+  background: blue;
+  margin-left: 100px; /*利用外边距填充内容,且填充元素的宽度必须一致*/
+  margin-right: 100px; /*利用外边距填充内容,且填充元素的宽度必须一致*/
+  height: 350px;
+}
+
+.aside {
+  width: 100px; /*利用外边距填充内容,宽度与兄弟wrap宽度必须一致*/
+  height: 300px;
+  background: red;
+
+  margin-left: -100%; /*减去浮动main的宽度，置于main层级左边*/
+}
+.extra {
+  width: 100px;
+  height: 300px;
+  background: yellow;
+
+  margin-left: -100px; /*减去自身的宽度，置于main层级右边*/
+}

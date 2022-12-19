@@ -1,0 +1,49 @@
+#content {
+  border: 1px solid #999;
+  padding-left: 100px; /*利用内边距填充内容,且填充元素的宽度必须一致*/
+  padding-right: 100px; /*利用内边距填充内容,且填充元素的宽度必须一致*/
+  min-width: 200px; /*防止不断挤压宽度，main宽度过小，造成布局错乱*/
+}
+
+#content:after {
+  /*清除浮动*/
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.main,
+.aside,
+.extra {
+  /*元素全部浮动*/
+  float: left;
+}
+
+.main {
+  background: blue;
+  height: 350px;
+
+  width: 100%; /*宽度自适应*/
+}
+
+.aside {
+  background: red;
+  width: 100px; /*利用父级内边距填充内容,宽度与父级宽度必须一致*/
+  height: 300px;
+
+  margin-left: -100%; /*减去浮动main的宽度，置于main层级左边*/
+
+  position: relative;
+  left: -100px; /*移动到父级内边距中*/
+}
+
+.extra {
+  background: yellow;
+  width: 100px; /*利用父级内边距填充内容,宽度与父级宽度必须一致*/
+  height: 300px;
+
+  margin-left: -100px; /*减去浮动aside的宽度，置于main层级右边*/
+
+  position: relative;
+  left: 100px; /*移动到父级内边距中*/
+}
