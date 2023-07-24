@@ -31,6 +31,21 @@ const iteration = (root) => {
   return res
 }
 
+const solu = (root) => {
+  const res = []
+  const stack = []
+  let curr = root
+  while (stack.length > 0 || curr) {
+    while (curr) {
+      stack.push(curr)
+      curr = curr.left
+    }
+    res.push(stack.pop().val)
+    curr = curr.right
+  }
+  return res
+}
+
 const _iteration = (root) => {
   const res = []
   const stack = []
