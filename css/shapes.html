@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>正方形/扇形</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      .square {
+        width: 10%;
+        height: 10vw;
+        background: tomato;
+      }
+      .shanxing {
+        border: 100px solid transparent;
+        width: 0;
+        height: 0;
+        border-radius: 100px;
+        border-top-color: red;
+      }
+      .trapezoid {
+        border-top: 40px solid blue;
+        border-left: 25px solid transparent;
+        border-right: 25px solid transparent;
+        height: 0;
+        width: 100px;
+      }
+      .triangle {
+        width: 0;
+        height: 0;
+        border: 50px solid transparent;
+        border-top-color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="square">正方形</div>
+    <div class="shanxing">扇形</div>
+    <div class="trapezoid">梯形</div>
+    <div class="triangle">三角形</div>
+  </body>
+</html>
